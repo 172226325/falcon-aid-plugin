@@ -3,11 +3,20 @@ plugins:
     default: true
     client: true
   falcon_aid_topic_button_url:
-    default: "https://www.discourse.org"
+    default: "https://discourse.lmera.ericsson.se"
     client: true
   falcon_aid_topic_button_title:
-    default: "Button description here.."
+    default: "this is falcon aid button"
     client: true
   falcon_aid_topic_button_label:
-    default: "Click Me"
+    default: "FALCON AID"
+    client: true
+  falcon_aid_similar_topic_req_url:
+    default: "/mini-profiler-resources/results"
+    client: true
+  falcon_aid_similar_topic_req_param:
+    default: ""
+    client: true
+  falcon_aid_similar_topic_enable_mock:
+    default: true
     client: true

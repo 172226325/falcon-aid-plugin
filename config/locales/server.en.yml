@@ -1,6 +1,9 @@
 en:
   site_settings:
     falcon_aid_plugin_enabled: "Enable FalconAidPlugin plugin"
-    falcon_aid_topic_button_url: "Custom button URL (&lt;USERNAME&gt; &lt;USER_ID&gt; &lt;TOPIC_ID&gt; &lt;TOPIC_TITLE&gt; will be replaced)"
-    falcon_aid_topic_button_title: "Custom button title"
-    falcon_aid_topic_button_label: "Custom button label"
+    falcon_aid_topic_button_url: "falcon aid topic button url"
+    falcon_aid_topic_button_title: "falcon aid topic button title"
+    falcon_aid_topic_button_label: "falcon aid topic button label"
+    falcon_aid_similar_topic_req_url: "falcon aid similar topic request url"
+    falcon_aid_similar_topic_req_param: "falcon aid similar topic request parameter"
+    falcon_aid_similar_topic_enable_mock: "falcon aid similar topic enable mock"
