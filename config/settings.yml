@@ -11,6 +11,21 @@ plugins:
   falcon_aid_topic_button_label:
     default: "FALCON AID"
     client: true
+  falcon_aid_topic_button_css_style:
+    default: ""
+    client: true
+  falcon_aid_topic_button_url2:
+    default: "https://discourse.lmera.ericsson.se"
+    client: true
+  falcon_aid_topic_button_title2:
+    default: "this is falcon aid button"
+    client: true
+  falcon_aid_topic_button_label2:
+    default: "FALCON LOGAI"
+    client: true
+  falcon_aid_topic_button_css_style2:
+    default: ""
+    client: true
   falcon_aid_similar_topic_req_url:
     default: "/mini-profiler-resources/results"
     client: true
