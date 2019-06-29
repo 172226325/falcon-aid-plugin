@@ -2,3 +2,12 @@ plugins:
   falcon_aid_plugin_enabled:
     default: true
     client: true
+  falcon_aid_topic_button_url:
+    default: "https://www.discourse.org"
+    client: true
+  falcon_aid_topic_button_title:
+    default: "Button description here.."
+    client: true
+  falcon_aid_topic_button_label:
+    default: "Click Me"
+    client: true

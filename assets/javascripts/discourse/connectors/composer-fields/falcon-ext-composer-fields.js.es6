@@ -10,13 +10,8 @@ function aidKeyUpEvent(contentVal){
 export default {
   actions: {
     setContent(content){
-      //$("#falcon-aid-show-content").html(content);
     },
     setAidEnabled(){
-      //alert("click me ");
-      //falcon-aid-is-enable-btn
-      //alert($("#reply-title").val());
-      //alert($("div[class='title-and-category'] > input[id='reply-title']").val());
       var btnElm = $("#falcon-aid-is-enable-btn");
       var ef = btnElm.attr("enable-flag");
 
@@ -39,8 +34,4 @@ export default {
     }
   }
 };
-// $(function(){
-//   $("div[class='title-and-category'] > input[id='reply-title']").change(function(){
-//     $("#falcon-aid-show-content").html($(this).val());
-//   });
-// });
+
