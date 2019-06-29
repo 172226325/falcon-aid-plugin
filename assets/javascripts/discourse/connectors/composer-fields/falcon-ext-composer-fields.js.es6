@@ -11,20 +11,49 @@ function aidRenderData(renderData){
   if(renderData == undefined || renderData == null || renderData.length == 0){
     return;
   }
-  var renderResult = "<ul>";
+  var renderResult = "<ul class='list'>";
   for(var i = 0;i<renderData.length;i++){
-    renderResult +="<li><a target='_blank' href='"+renderData[i].url+"'>"+renderData[i].title+"</a></li>";
+    renderResult +=
+      "<li class='item'>" +
+      "<a class='widget-link search-link' target='_blank' href='"+renderData[i].url+"'>"
+      +"<span class=\"topic\" style='flex-direction:column;'>"
+      +"<div class=\"first-line\">"
+      +"<span class=\"topic-title\">"
+      +"<span>"+renderData[i].title+"</span>"
+      +"</span>"
+      +"</div>"
+      +"<div class=\"second-line\">"
+      +"<span class=\"badge-wrapper bullet\">"
+      +"<span class=\"badge-category-bg\" style=\"background-color: "+renderData[i].color+";\">"
+      +"</span>"
+      +"<span data-drop-close=\"true\" class=\"badge-category clear-badge\">"
+      +"<span class=\"category-name\">"+renderData[i].category+"</span>"
+      +"</span>"
+      +"</span>"
+      +"</div>"
+      +"</span>"
+      +"<span class=\"blurb\">"
+      +"<span>"+renderData[i].content+"</span>"
+      +"</span>"
+      +"</a>" +
+      "</li>";
   }
   renderResult += "</ul>";
   $("#falcon-aid-show-content-topics").html(renderResult);
 }
 function aidAJaxCall(contentVal,reqUrl,title,mockEnable){
   var mockData = [{
-    "title":"baidu site"
+    "title":"BUG : theme name not updated"
     ,"url":"http://www.baidu.com"
+    ,"color":"#e9dd00"
+    ,"content":"Hello, I create a new theme and then I rename this theme but the name is not updated in the Profile"
+    ,"category":"MJE"
   },{
     "title":"google site"
     ,"url":"http://www.google.com"
+    ,"color":"green"
+    ,"content":"hijglmnopqopqrst"
+    ,"category":"en"
   }];
 
   if(mockEnable){
