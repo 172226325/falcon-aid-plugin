@@ -1,0 +1,4 @@
+plugins:
+  falcon_aid_plugin_enabled:
+    default: true
+    client: true
