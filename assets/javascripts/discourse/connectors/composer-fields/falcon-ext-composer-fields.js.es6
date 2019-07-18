@@ -8,7 +8,7 @@ function aidActionEvent(contentVal,reqUrl,title,mockEnable){
   }
 }
 function aidRenderData(renderData){
-  if(renderData == undefined || renderData == null || renderData.length == 0){
+  if(renderData == undefined || renderData == null){
     return;
   }
   var renderResult = "<ul class='list'>";
@@ -86,13 +86,15 @@ export default {
       var btnElm = $("#falcon-aid-is-enable-btn");
       var ef = btnElm.attr("enable-flag");
 
+      var reqUrl = this.siteSettings.falcon_aid_similar_topic_req_url;
+      var title = this.siteSettings.falcon_aid_similar_topic_req_param;
+      var mockEnable = this.siteSettings.falcon_aid_similar_topic_enable_mock;
+      var triggerType = this.siteSettings.falcon_aid_similar_topic_trigger_type;
+
       if(ef == "0"){
         btnElm.attr("enable-flag","1")
         btnElm.text("disable aid");
-        var reqUrl = this.siteSettings.falcon_aid_similar_topic_req_url;
-        var title = this.siteSettings.falcon_aid_similar_topic_req_param;
-        var mockEnable = this.siteSettings.falcon_aid_similar_topic_enable_mock;
-        var triggerType = this.siteSettings.falcon_aid_similar_topic_trigger_type;
+
         aidActionEvent($("#reply-title").val(),reqUrl,title,mockEnable);
 
         if(triggerType == "keyup"){
@@ -113,7 +115,11 @@ export default {
       }else{
         btnElm.attr("enable-flag","0")
         btnElm.text("enable aid");
-        $("#reply-title").unbind("keyup");
+        if(triggerType == "keyup"){
+          $("#reply-title").unbind("keyup");
+        }else{
+          $("#reply-title").unbind("blur");
+        }
         $("#falcon-aid-show-content").hide();
       }
     }
