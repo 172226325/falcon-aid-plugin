@@ -1,6 +1,6 @@
 # FalconAidPlugin
 
-FalconAidPlugin is a plugin for ...
+FalconAidPlugin is a plugin for the summer camp of falcon team
 
 ## Installation
 
