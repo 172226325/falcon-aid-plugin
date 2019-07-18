@@ -35,3 +35,6 @@ plugins:
   falcon_aid_similar_topic_enable_mock:
     default: true
     client: true
+  falcon_aid_similar_topic_trigger_type:
+    default: "keyup"
+    client: true

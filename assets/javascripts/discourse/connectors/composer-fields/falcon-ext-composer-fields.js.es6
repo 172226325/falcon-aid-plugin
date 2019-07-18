@@ -1,5 +1,5 @@
 
-function aidKeyUpEvent(contentVal,reqUrl,title,mockEnable){
+function aidActionEvent(contentVal,reqUrl,title,mockEnable){
   aidAJaxCall(contentVal,reqUrl,title,mockEnable);
   if(contentVal == ''){
     $("#falcon-aid-show-content").hide();
@@ -19,7 +19,7 @@ function aidRenderData(renderData){
       +"<span class=\"topic\" style='flex-direction:column;'>"
       +"<div class=\"first-line\">"
       +"<span class=\"topic-title\">"
-      +"<span>"+renderData[i].title+"</span>"
+      +"<span style='color:#222;'>"+renderData[i].title+"</span>"
       +"</span>"
       +"</div>"
       +"<div class=\"second-line\">"
@@ -32,8 +32,8 @@ function aidRenderData(renderData){
       +"</span>"
       +"</div>"
       +"</span>"
-      +"<span class=\"blurb\">"
-      +"<span>"+renderData[i].content+"</span>"
+      +"<span class=\"blurb\" style='margin-bottom:10px;'>"
+      +"<span style='color:#646464;'>"+renderData[i].content+"</span>"
       +"</span>"
       +"</a>" +
       "</li>";
@@ -92,11 +92,23 @@ export default {
         var reqUrl = this.siteSettings.falcon_aid_similar_topic_req_url;
         var title = this.siteSettings.falcon_aid_similar_topic_req_param;
         var mockEnable = this.siteSettings.falcon_aid_similar_topic_enable_mock;
-        aidKeyUpEvent($("#reply-title").val(),reqUrl,title,mockEnable);
-        $("#reply-title").keyup(function(){
-          var contentVal = $(this).val();
-          aidKeyUpEvent(contentVal,reqUrl,title,mockEnable);
-        });
+        var triggerType = this.siteSettings.falcon_aid_similar_topic_trigger_type;
+        aidActionEvent($("#reply-title").val(),reqUrl,title,mockEnable);
+
+        if(triggerType == "keyup"){
+          //alert("keyup");
+          $("#reply-title").keyup(function(){
+            var contentVal = $(this).val();
+            aidActionEvent(contentVal,reqUrl,title,mockEnable);
+          });
+        }else{
+          $("#reply-title").blur(function(){
+           // alert("blur");
+            var contentVal = $(this).val();
+            aidActionEvent(contentVal,reqUrl,title,mockEnable);
+          });
+        }
+
 
       }else{
         btnElm.attr("enable-flag","0")

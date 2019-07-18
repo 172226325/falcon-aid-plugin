@@ -12,3 +12,4 @@ en:
     falcon_aid_similar_topic_req_url: "falcon aid similar topic request url"
     falcon_aid_similar_topic_req_param: "falcon aid similar topic request parameter"
     falcon_aid_similar_topic_enable_mock: "falcon aid similar topic enable mock"
+    falcon_aid_similar_topic_trigger_type: "falcon aid similar topic trigger type"
