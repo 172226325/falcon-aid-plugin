@@ -1,7 +1,25 @@
 
-function aidActionEvent(contentVal,reqUrl,title,mockEnable){
-  aidAJaxCall(contentVal,reqUrl,title,mockEnable);
-  if(contentVal == ''){
+function aidActionEvent(contentVal,reqUrl,title,mockEnable,triggerNum){
+  var ctVal1 = $("#reply-title").val();
+  var ctVal2 = $(".d-editor-preview").html();
+  var ctVal = ctVal1 + ctVal2
+  var btnElm = $("#falcon-aid-is-enable-btn");
+  var nf = btnElm.attr("num-flag");
+  var numLvl = parseInt(nf);
+  var ctLen = ctVal.length;
+  // every n letters exec ajax call, otherwise ignore it
+  // need record previous num
+  var currentNumLvl = parseInt(ctLen / triggerNum);
+  if(currentNumLvl != numLvl){
+    btnElm.attr("num-flag",currentNumLvl + "")
+    aidAJaxCall(ctVal1,reqUrl,title,mockEnable,ctVal2);
+  }else{
+    // ignore ajax
+  }
+
+
+  ;
+  if(ctVal == '' || ctVal == '<!---->'){
     $("#falcon-aid-show-content").hide();
   }else{
     $("#falcon-aid-show-content").show();
@@ -11,6 +29,7 @@ function aidRenderData(renderData){
   if(renderData == undefined || renderData == null){
     return;
   }
+
   var renderResult = "<ul class='list'>";
   for(var i = 0;i<renderData.length;i++){
     renderResult +=
@@ -41,7 +60,7 @@ function aidRenderData(renderData){
   renderResult += "</ul>";
   $("#falcon-aid-show-content-topics").html(renderResult);
 }
-function aidAJaxCall(contentVal,reqUrl,title,mockEnable){
+function aidAJaxCall(contentVal,reqUrl,title,mockEnable,ctVal2){
   var mockData = [{
     "title":"BUG : theme name not updated"
     ,"url":"http://www.baidu.com"
@@ -69,6 +88,7 @@ function aidAJaxCall(contentVal,reqUrl,title,mockEnable){
       contentType:'application/x-www-form-urlencoded',
       data:{
         title:contentVal
+        ,content:ctVal2
       },
       dataType:'json',
       success:function (data) {
@@ -90,24 +110,30 @@ export default {
       var title = this.siteSettings.falcon_aid_similar_topic_req_param;
       var mockEnable = this.siteSettings.falcon_aid_similar_topic_enable_mock;
       var triggerType = this.siteSettings.falcon_aid_similar_topic_trigger_type;
+      var triggerNum = this.siteSettings.falcon_aid_similar_topic_trigger_num;
 
       if(ef == "0"){
         btnElm.attr("enable-flag","1")
         btnElm.text("disable aid");
 
-        aidActionEvent($("#reply-title").val(),reqUrl,title,mockEnable);
+        aidActionEvent($("#reply-title").val(),reqUrl,title,mockEnable,triggerNum);
 
         if(triggerType == "keyup"){
           //alert("keyup");
           $("#reply-title").keyup(function(){
             var contentVal = $(this).val();
-            aidActionEvent(contentVal,reqUrl,title,mockEnable);
+            aidActionEvent(contentVal,reqUrl,title,mockEnable,triggerNum);
           });
+          $(".d-editor-preview").bind("DOMNodeInserted",function(e){
+            var contentVal = $(".d-editor-preview").html();
+            aidActionEvent(contentVal,reqUrl,title,mockEnable,triggerNum);
+          });
+
         }else{
           $("#reply-title").blur(function(){
            // alert("blur");
             var contentVal = $(this).val();
-            aidActionEvent(contentVal,reqUrl,title,mockEnable);
+            aidActionEvent(contentVal,reqUrl,title,mockEnable,triggerNum);
           });
         }
 
@@ -117,6 +143,7 @@ export default {
         btnElm.text("enable aid");
         if(triggerType == "keyup"){
           $("#reply-title").unbind("keyup");
+          $(".d-editor-preview").unbind("DOMNodeInserted");
         }else{
           $("#reply-title").unbind("blur");
         }

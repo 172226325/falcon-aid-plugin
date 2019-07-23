@@ -38,3 +38,6 @@ plugins:
   falcon_aid_similar_topic_trigger_type:
     default: "keyup"
     client: true
+  falcon_aid_similar_topic_trigger_num:
+    default: "10"
+    client: true
