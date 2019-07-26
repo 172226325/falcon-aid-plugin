@@ -13,9 +13,9 @@ enabled_site_setting :falcon_aid_plugin_enabled
 PLUGIN_NAME ||= "FalconAidPlugin".freeze
 
 after_initialize do
-  
+
   # see lib/plugin/instance.rb for the methods available in this context
-  
+
 
   module ::FalconAidPlugin
     class Engine < ::Rails::Engine
@@ -24,9 +24,9 @@ after_initialize do
     end
   end
 
-  
 
-  
+
+
   require_dependency "application_controller"
   class FalconAidPlugin::ActionsController < ::ApplicationController
     requires_plugin PLUGIN_NAME
@@ -45,5 +45,11 @@ after_initialize do
   Discourse::Application.routes.append do
     mount ::FalconAidPlugin::Engine, at: "/falcon-aid-plugin"
   end
-  
+
+  add_to_serializer(:current_user, :can_see_topic_group_button?) do
+    return true if scope.is_staff?
+    group = Group.find_by("lower(name) = ?", SiteSetting.falcon_aid_topic_group_button_allowed_group.downcase)
+    return true if group && GroupUser.where(user_id: scope.user.id, group_id: group.id).exists?
+  end
+
 end

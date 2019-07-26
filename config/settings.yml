@@ -41,3 +41,6 @@ plugins:
   falcon_aid_similar_topic_trigger_num:
     default: "10"
     client: true
+  falcon_aid_topic_group_button_allowed_group:
+    default: "mje"
+    client: true
