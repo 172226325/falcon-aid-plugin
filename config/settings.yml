@@ -26,6 +26,12 @@ plugins:
   falcon_aid_topic_button_css_style2:
     default: ""
     client: true
+  falcon_aid_topic_group_button_allowed_group:
+    default: "mje"
+    client: true
+  falcon_aid_topic_button_allowed_category:
+    default: "[fc-category=\"MJE\"]"
+    client: true
   falcon_aid_similar_topic_req_url:
     default: "/mini-profiler-resources/results"
     client: true
@@ -39,8 +45,9 @@ plugins:
     default: "keyup"
     client: true
   falcon_aid_similar_topic_trigger_num:
-    default: "10"
+    default: "1"
     client: true
-  falcon_aid_topic_group_button_allowed_group:
-    default: "mje"
+  falcon_aid_similar_topic_button_css_style:
+    default: ""
     client: true
+

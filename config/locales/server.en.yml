@@ -15,3 +15,5 @@ en:
     falcon_aid_similar_topic_trigger_type: "falcon aid similar topic trigger type"
     falcon_aid_similar_topic_trigger_num: "falcon aid similar topic trigger num"
     falcon_aid_topic_group_button_allowed_group: "falcon aid topic group button allowed group"
+    falcon_aid_topic_button_allowed_category: "falcon aid topic button allowed category"
+    falcon_aid_similar_topic_button_css_style: "falcon aid similar topic button css style"

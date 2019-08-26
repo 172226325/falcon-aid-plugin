@@ -47,8 +47,21 @@ after_initialize do
   end
 
   add_to_serializer(:current_user, :can_see_topic_group_button?) do
-    return true if scope.is_staff?
-    group = Group.find_by("lower(name) = ?", SiteSetting.falcon_aid_topic_group_button_allowed_group.downcase)
+    # return true if scope.is_staff?
+    # group = Group.find_by("lower(name) = ?", SiteSetting.falcon_aid_topic_group_button_allowed_group.downcase)
+    # return true if group && GroupUser.where(user_id: scope.user.id, group_id: group.id).exists?
+
+    groupConfig = SiteSetting.falcon_aid_topic_group_button_allowed_group.downcase
+    if groupConfig == "" then
+      return true;
+    end
+    spArr = groupConfig.split(",");
+    spRes = ""
+    spArr.each do |elm|
+      spRes = spRes + ",'" + elm + "'";
+    end
+    spRes = spRes[1,spRes.length];
+    group = Group.find_by("lower(name) in (?)", spRes)
     return true if group && GroupUser.where(user_id: scope.user.id, group_id: group.id).exists?
   end
 
